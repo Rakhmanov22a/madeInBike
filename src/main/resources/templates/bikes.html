@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Players</title>
+    <title>Bikes</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
@@ -11,25 +11,30 @@
     <div class="page-header" id="banner">
         <div class="row">
             <div class="col-lg-8 col-md-7 col-sm-6">
-                <h1>Добавить игрока</h1>
-                <form class="needs-validation" novalidate th:action="@{/players}" method="post" enctype="multipart/form-data">
+                <h1>Добавить bike</h1>
+                <form class="needs-validation" novalidate th:action="@{/bikes}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <select multiple class="form-control" name="clubIId" required>
-                            <option th:each="club : ${clubs}"
-                                    th:value="${club.clubId}"
-                                    th:text="${club.fullName}">Club</option>
+                        <select multiple class="form-control" name="madeInIId" required>
+                            <option th:each="madeIn : ${madeIns}"
+                                    th:value="${madeIn.madeInId}"
+                                    th:text="${madeIn.bikeName + '  ' + madeIn.location}">MadeIn</option>
                         </select>
-                        <div class="invalid-feedback">Выберите один клуб</div>
+                        <div class="invalid-feedback">Выберите одного пройзводителя </div>
                     </div>
                     <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input type="text" class="form-control" id="first_name" name="firstName" required/>
-                        <div class="invalid-feedback">Введите имя игрока</div>
+                        <label for="bike_model">Bike Model</label>
+                        <input type="text" class="form-control" id="bike_model" name="bikeModel" required/>
+                        <div class="invalid-feedback">Введите модель bike</div>
                     </div>
                     <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" class="form-control" id="last_name" name="lastName" required/>
-                        <div class="invalid-feedback">Введите фамилию игрока</div>
+                        <label for="bike_color">Bike Color</label>
+                        <input type="text" class="form-control" id="bike_color" name="bikeColor" required/>
+                        <div class="invalid-feedback">Введите цвет bike</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bike_year">Bike Year</label>
+                        <input type="text" class="form-control" id="bike_year" name="bikeYear" required/>
+                        <div class="invalid-feedback">Введите год bike</div>
                     </div>
                     <button type="submit" class="btn btn-default" id="submit">Добавить игрока</button>
                 </form>
@@ -37,23 +42,27 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-7 col-sm-6">
-                <h1>Игроки</h1>
+                <h1>Bike</h1>
 
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Игрок</th>
-                        <th>Клуб</th>
+                        <th>BikeName</th>
+                        <th>BikeModel</th>
+                        <th>BikeColor</th>
+                        <th>BikeYear</th>
                         <th>Действие</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="player : ${players}">
-                        <td th:text="${player.playerId}"></td>
-                        <td th:text="${player.firstName + ' ' + player.lastName}"></td>
-                        <td th:text="${player.club.fullName}"></td>
-                        <td> <a th:href = "@{'/remove?id='+${player.playerId}}"><button class="btn btn-outline=danger">Удалить</button></a><td>
+                    <tr th:each="bike : ${bikes}">
+                        <td th:text="${bike.bikeId}"></td>
+                        <td th:text="${bike.madeIn.bikeName}"></td>
+                        <td th:text="${bike.bikeModel}"></td>
+                        <td th:text="${bike.bikeColor}"></td>
+                        <td th:text="${bike.bikeYear}"></td>
+                        <td> <a th:href = "@{'/remove?id='+${bike.bikeId}}"><button class="btn btn-outline=danger">Удалить</button></a><td>
                     </tr>
                     </tbody>
                 </table>
