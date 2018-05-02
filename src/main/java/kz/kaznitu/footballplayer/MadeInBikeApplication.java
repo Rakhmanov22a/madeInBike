@@ -19,7 +19,7 @@ public class MadeInBikeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception{
 
-		/*MadeIn madeIn1 = new MadeIn();
+		MadeIn madeIn1 = new MadeIn();
 		madeIn1.setBikeName("Yamaha");
 		madeIn1.setLocation("Japan");
 
@@ -28,6 +28,6 @@ public class MadeInBikeApplication implements CommandLineRunner {
 		madeIn2.setLocation("Korean");
 
 		madeInRepository.save(madeIn1);
-		madeInRepository.save(madeIn2);*/
+		madeInRepository.save(madeIn2);
 	}
 }
